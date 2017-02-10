@@ -1,0 +1,43 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Variables ***
+
+*** Test Cases ***
+PeopleFinderSearch_Return_Email&MobNum
+    Open Browser    http://gp.internal.ericsson.com/wps/portal/pf/pf_default/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT0sjYwsDYw8_X2MXAw8nQJNLD1MPYwMXAz0w8EKDHAARwP9KEL6o_Aq8TGCKsBnBViBib-lu7sH0AR3Z0sLoAkepp6Grp4GBi5G-gW5EQaZno6KANDRucQ!/dz/d5/L2dBISEvZ0FBIS9nQSEh/    FF
+    Maximize Browser Window
+    Sleep    3s
+    InputText    xpath = .//*[@id='srchFN']    Dwaipayan
+    InputText    xpath = .//*[@id='srchLN']    Basu
+    Click Element    xpath = .//*[@id='ns_Z7_1H922902IOL2D0IBQ49H5H20D7_frmPeopleFinder']/div/div[2]/input[1]
+    Sleep    3s
+    ${UserEmail}    Get Text    xpath = .//*[@id='layoutContainers']/div/div[2]/div[1]/div/section/div[2]/div[2]/div[2]/table/tbody/tr[9]/td[1]/div/a
+    ${UserMobNum}    Get Text    xpath = .//*[@id='layoutContainers']/div/div[2]/div[1]/div/section/div[2]/div[2]/div[2]/table/tbody/tr[12]/td[1]/div/a
+    Log    EmailID of User is ${UserEmail}
+    Log    Mobile Number of User is ${UserMobNum}
+    Close Browser
+
+MercuryToursFlow
+    Open Browser    http://newtours.demoaut.com/    FF
+    Maximize Browser Window
+    Sleep    3s
+    InputText    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[2]/td[2]/input    mercury
+    InputText    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[3]/td[2]/input    mercury
+    Click Element    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[4]/td[2]/div/input
+    Sleep    3s
+    Click Element    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[14]/td/input
+    Sleep    3s
+    Click Element    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/p/input
+    Sleep    3s
+    InputText    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td/table/tbody/tr[2]/td[1]/input    vikram
+    Sleep    2s
+    InputText    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td/table/tbody/tr[2]/td[2]/input    surana
+    Sleep    2s
+    Click Element    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[23]/td/input
+    Sleep    2s
+    ${SuccessMsg}    Get Text    xpath = html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr[1]/td[2]/table/tbody/tr[3]/td/p/font/b/font[2]
+    Log    ${SuccessMsg}
+    Close Browser
+
+*** Keywords ***
